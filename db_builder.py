@@ -14,19 +14,21 @@ for line in lines:
     newdict['code'] = line.split(',')[0]
     newdict['mark'] = line.split(',')[1]
     newdict['id'] = line.split(',')[2]
-    dicts.append(newdict)
+    Cdicts.append(newdict)
 
-db.courses.insert_many(dicts)
+db.courses.insert_many(Cdicts)
 
 Pdicts = []
-lines = open("courses.csv").read().split('\n')[1:]
+lines = open("peeps.csv").read().split('\n')[1:]
 
 for line in lines:
     if line == "":
         continue;
     newdict = {}
-    newdict['code'] = line.split(',')[0]
-    newdict['mark'] = line.split(',')[1]
+    newdict['name'] = line.split(',')[0]
+    newdict['age'] = line.split(',')[1]
     newdict['id'] = line.split(',')[2]
-    dicts.append(newdict)
+    Pdicts.append(newdict)
+
+db.courses.insert_many(Pdicts)
 
