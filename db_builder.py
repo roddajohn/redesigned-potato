@@ -12,9 +12,10 @@ db = server["redesigned-potato"]
 
 db.courses.remove()
 db.peeps.remove()
+db.teachers.remove()
 
 Cdicts = []
-lines = open("courses.csv").read().split('\n')[1:]
+lines = open("courses.csv").read().split('\n')
 
 for line in lines:
     if line == "":
@@ -28,7 +29,7 @@ for line in lines:
 db.courses.insert_many(Cdicts)
 
 Pdicts = []
-lines = open("peeps.csv").read().split('\n')[1:]
+lines = open("peeps.csv").read().split('\n')
 
 for line in lines:
     if line == "":
@@ -40,20 +41,6 @@ for line in lines:
     Pdicts.append(newdict)
 
 db.peeps.insert_many(Pdicts)
-
-#Calculates the avgs of all students and puts it in a dictionary where name : avg
-for person in db.peeps.find():
-    nombre = person["name"]
-    eyedee = person["id"]
-    avg = 0
-    num = 0
-    for course in db.courses.find({'id': eyedee}):
-        avg += int(course["mark"])
-        num += 1
-
-    avg = float(avg) / float(num)
-    print("Name: "+nombre+" ID: "+eyedee+" Avg: "+str(avg))
-
                    
 
 
