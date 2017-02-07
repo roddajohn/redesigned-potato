@@ -10,6 +10,9 @@ server = MongoClient("lisa.stuy.edu")
 
 db = server["redesigned-potato"]
 
+db.courses.remove()
+db.peeps.remove()
+
 Cdicts = []
 lines = open("courses.csv").read().split('\n')[1:]
 
@@ -39,16 +42,17 @@ for line in lines:
 db.peeps.insert_many(Pdicts)
 
 #Calculates the avgs of all students and puts it in a dictionary where name : avg
-averages = {}
 for person in db.peeps.find():
     nombre = person["name"]
     eyedee = person["id"]
-    markers = db.courses.find_one({'id': eyedee})
-    courses = markers["courses"]
     avg = 0
-    for c in courses:
+    num = 0
+    for course in db.courses.find({'id': eyedee}):
         avg += int(course["mark"])
-    print("Name: "+nombre+" ID: "+eyedee+" Avg: "+avg)
+        num += 1
+
+    avg = float(avg) / float(num)
+    print("Name: "+nombre+" ID: "+eyedee+" Avg: "+str(avg))
 
                    
 
