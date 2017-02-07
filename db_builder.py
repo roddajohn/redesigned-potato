@@ -12,7 +12,6 @@ db = server["redesigned-potato"]
 
 db.courses.remove()
 db.peeps.remove()
-db.teachers.remove()
 
 Cdicts = []
 lines = open("courses.csv").read().split('\n')
