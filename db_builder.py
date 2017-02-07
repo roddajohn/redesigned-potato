@@ -5,9 +5,8 @@
 
 from pymongo import MongoClient
 
-#server = MongoClient("lisa@stuy.edu")
-server = MongoClient()
-server = MongoClient('localhost', 27017)
+#server = MongoClient('localhost', 27017)
+server = MongoClient("lisa.stuy.edu")
 
 db = server["redesigned-potato"]
 
@@ -39,14 +38,18 @@ for line in lines:
 
 db.peeps.insert_many(Pdicts)
 
+#Calculates the avgs of all students and puts it in a dictionary where name : avg
 averages = {}
 for person in db.peeps.find():
     nombre = person["name"]
     eyedee = person["id"]
-    #print eyedee
-    markers = db.courses.find({'id': eyedee})
+    markers = db.courses.find_one({'id': eyedee})
+    courses = markers["courses"]
+    avg = 0
+    for c in courses:
+        avg += int(course["mark"])
+    print("Name: "+nombre+" ID: "+eyedee+" Avg: "+avg)
 
-    for mark in markers:
-        averages[nombre] = mark
-#print averages
+                   
+
 
