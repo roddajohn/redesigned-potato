@@ -9,6 +9,8 @@ server = MongoClient("lisa.stuy.edu")
 
 db = server["redesigned-potato"]
 
+db.teachers.remove()
+
 t_dicts = []
 
 # insert teachers
