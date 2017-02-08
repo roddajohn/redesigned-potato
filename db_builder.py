@@ -1,7 +1,7 @@
 ##Rodda John y Jiaqi Gao
 ##SoftDev2 pd8
-##HW2 -- You Boys Like Mexico?
-##2017-02-06  
+##HW3 -- Welcome to Tijuana
+##2017-02-08  
 
 from pymongo import MongoClient
 
